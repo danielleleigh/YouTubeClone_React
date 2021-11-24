@@ -1,0 +1,45 @@
+/* .container {
+  width: fit-content;
+}
+
+.row {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.row > *:not(:last-child) {
+  margin-right: .5rem;
+} */
+
+.columnA {
+  float: left;
+  width: 80%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.columnB {
+  float: right;
+  width: 20%;
+  padding: 10px;
+  height: 300px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+container {
+  width: fit-content;
+}
+
+row {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
