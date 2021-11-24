@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, Component } from 'react';
 
 
 // function SearchBar(props) {
@@ -12,7 +12,7 @@ import React, { Component } from 'react';
 
 // export default SearchBar;
 
-// const videoSearch = async => () => {
+// export const videoSearch = async => () => {
 //     let response = await axios.get("https://www.googleapis.com/youtube/v3/search?q=skiing&key=AIzaSyCTsMnnqzkaOvW4zYnh6rCJAUH2hXP0DbA");
 //     console.log(response.data)
     
@@ -31,8 +31,7 @@ import React, { Component } from 'react';
 
 
 
-import React, { useState } from 'react'
-export const SearchBar = ({onSearchSubmit}) => {
+const SearchBar = ({onSearchSubmit}) => {
     const [searchTerm, setSearchTerm] = useState('')
     const searchTermHandler = (evt) => {
         evt.preventDefault()
@@ -52,3 +51,6 @@ export const SearchBar = ({onSearchSubmit}) => {
             </form>
         </div>
     );
+}
+
+export default SearchBar;
