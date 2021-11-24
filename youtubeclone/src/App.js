@@ -28,21 +28,30 @@ function App() {
     //         frameborder="0"></iframe>
     // </div>
     // </div>
-  
+
+<div>
+<h1>Meowy Christmas from Youtube</h1>
     <container>
-    <div className="columnB">
-      {console.log("Render happened!!!!!!!")}
-        <button onClick={itunesAPICall}>Click me</button>
-        {music.map(song =>
-          <DisplaySong song={song} flamingo={"Word"}></DisplaySong>
-          )}
-      </div>
-      <div className="columnB">
-      <iframe id="ytplayer" type="text/html" width="640" height="360"
-            src="https://www.youtube.com/embed/gV_i61_U79U?autoplay=1&origin=http://example.com"
-            frameborder="0"></iframe>
-      </div>
+      <row>
+        <column>
+          <div className="columnA">
+          <iframe id="ytplayer" type="text/html" width="640" height="360"
+                src="https://www.youtube.com/embed/gV_i61_U79U?autoplay=1&origin=http://example.com"
+                frameborder="0"></iframe>
+          </div>
+          </column>
+        <column>
+        <div className="columnB">
+          {console.log("Render happened!!!!!!!")}
+            <button onClick={itunesAPICall}>Click me</button>
+            {music.map(song =>
+              <DisplaySong song={song} flamingo={"Word"}></DisplaySong>
+              )}
+          </div>
+        </column>
+        </row>
     </container>
+</div>
   );
 }
 
