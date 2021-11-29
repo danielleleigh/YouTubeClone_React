@@ -3,13 +3,14 @@ import './App.css';
 import axios from 'axios'
 import SearchBar from './components/videosearch/videosearch';
 import DisplaySearchResults from './components/DisplaySearchResults/DisplaySearchResutls';
+import DisplayRelatedResults from './components/DisplayRelatedResults/DisplayRelatedResults';
 
 
 
 function App() {
 
   const [videoSearchResults, setVideoSearchResults] = useState([])
-  const [relatedResults, setRelatedResults] = useState([])
+  const [videoRelatedResults, setRelatedResults] = useState([])
   const [currentVideoId, setCurrentVideo] = useState(["gV_i61_U79U"])
 
   const videoSearch = async (searchTerm) => {
@@ -49,9 +50,7 @@ function App() {
                 </column>
               <column>
               <div className="columnB">
-                {console.log("Render happened!!!!!!!")}
-                
-                    )}
+                <DisplayRelatedResults setVideo={setVideo} videoRelatedResults={videoRelatedResults}/>
                 </div>
               </column>
               </row>
