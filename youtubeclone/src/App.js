@@ -6,7 +6,6 @@ import DisplaySearchResults from './components/DisplaySearchResults/DisplaySearc
 import DisplayRelatedResults from './components/DisplayRelatedResults/DisplayRelatedResults';
 
 
-
 function App() {
 
   const [videoSearchResults, setVideoSearchResults] = useState([])
