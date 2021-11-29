@@ -1,108 +1,50 @@
 import {useEffect, useState} from 'react'
 import './App.css';
 import axios from 'axios'
-import DisplaySong from './components/videodisplay/videodisplay';
+import DisplayVideo from './components/videodisplay/videodisplay';
 import SearchBar from './components/videosearch/videosearch';
 
 function App() {
 
-  const [music, setMusic] = useState([])
+  const [video, setVideo] = useState([])
 
-  const itunesAPICall = async () =>{
-    let response = await axios.get("https://itunes.apple.com/search?term=radiohead&media=music&limit=20");
-    console.log(response.data)
-    setMusic(response.data.results)
+  const videoSearch = async => () => {
+    let response = axios.get("https://www.googleapis.com/youtube/v3/search?q=${props.searchTerm}&key=AIzaSyCTsMnnqzkaOvW4zYnh6rCJAUH2hXP0DbA");
+    setVideo(response.data.items)
+    console.log(response.data.video)
+}    
+  const [videos, setRelated] = useState([])
+
+  const relatedVideo = async => () => {
+    let response = axios.get("https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${video}&type=video&key=AIzaSyCTsMnnqzkaOvW4zYnh6rCJAUH2hXP0DbA");
+    setRelated(response.data.items)
+    console.log(response.data.videos)
   }
 
-  // const [videos, setVideos] = useState([])
-
-  // const youtubeAPICall = async () =>{
-  //   let response = await axios.get("https://itunes.apple.com/search?term=radiohead&media=music&limit=20");
-  //   console.log(response.data)
-  //   setVideo(response.data.results)
-  // }
-
-  const filterSongs = (termToFilter) =>{
-    let filteredResults = this.state.library.filter(function(el){
-      if(el.title.includes(termToFilter));
-      {
-        return true;
-      }
-    })
-    this.useState({
-      library: filteredResults
-    })
-  }
-
-
-// export const KEY = '';
-// export default axios.create({
-//     baseURL: 'https://www.googleapis.com/youtube/v3',
-// })
   return (
-    // <div>
-    // <div style="width: 20%; float:left">
-    //   {console.log("Render happened!!!!!!!")}
-    //     <button onClick={itunesAPICall}>Click me</button>
-    //     {music.map(song =>
-    //       <DisplaySong song={song} flamingo={"Word"}></DisplaySong>
-    //       )}
-    // </div>
-
-    // <div style="width: 80%; float:right">
-    //   <iframe id="ytplayer" type="text/html" width="640" height="360"
-    //         src="https://www.youtube.com/embed/gV_i61_U79U?autoplay=1&origin=http://example.com"
-    //         frameborder="0"></iframe>
-    // </div>
-    // </div>
-
-/* <div>
-<h1>Meowy Christmas from Youtube</h1>
-    <container>
-      <row>
-        <column>
-          <div className="columnA">
-          <iframe id="ytplayer" type="text/html" width="640" height="360"
-                src="https://www.youtube.com/embed/gV_i61_U79U?autoplay=1&origin=http://example.com"
-                frameborder="0"></iframe>
-          </div>
-          </column>
-        <column>
-        <div className="columnB">
-          {console.log("Render happened!!!!!!!")}
-            <button onClick={itunesAPICall}>Click me</button>
-            {music.map(song =>
-              <DisplaySong song={song} flamingo={"Word"}></DisplaySong>
-              )}
-          </div>
-        </column>
-        </row>
-    </container>
-</div> */
-
-  <div>
-    <h1>Meowy Christmas from Youtube</h1>
-    <SearchBar/>
-        <container>
-          <row>
-            <column>
-              <div className="columnA">
-              <iframe id="ytplayer" type="text/html" width="640" height="360"
-                    src="https://www.youtube.com/embed/gV_i61_U79U?autoplay=1&origin=http://example.com"
-                    frameborder="0"></iframe>
-              </div>
+    <div>
+      <h1>Meowy Christmas from Youtube</h1>
+      <SearchBar onClick={videoSearch}/>
+          <container>
+            <row>
+              <column>
+                <div className="columnA">
+                <iframe title="youtube video" id="ytplayer" type="text/html" width="640" height="360"
+                      src="https://www.youtube.com/embed/gV_i61_U79U?autoplay=1&origin=http://example.com"
+                      frameborder="0"></iframe>
+                </div>
+                </column>
+              <column>
+              <div className="columnB">
+                {console.log("Render happened!!!!!!!")}
+                  <button onClick={relatedVideo}>Click me</button>
+                  {video.map(video =>
+                    <DisplayVideo video={video} flamingo={"Word"}></DisplayVideo>
+                    )}
+                </div>
               </column>
-            <column>
-            <div className="columnB">
-              {console.log("Render happened!!!!!!!")}
-                <button onClick={itunesAPICall}>Click me</button>
-                {music.map(song =>
-                  <DisplaySong song={song} flamingo={"Word"}></DisplaySong>
-                  )}
-              </div>
-            </column>
-            </row>
-        </container>
+              </row>
+          </container>
     </div>
 
   );
