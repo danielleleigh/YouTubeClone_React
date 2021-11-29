@@ -5,22 +5,22 @@ const DisplaySearchResults = (props) => {
         <React.Fragment>
             <table>
                 <thead>
-                    <tr>Search Results</tr>
+                    <td>Search Results</td>
                 </thead>
                 <tbody>
                     <tr>
                         {
-                            props.searchResults.map((video) => {
+                            props.videoSearchResults.map((video) => {
                                 return(
-                                    <React.Fragment>
+                                    <React.Fragment key={video.id.videoId}>
                                     <tr>
                                         <td>{video.snippet.title}</td>
                                         <td>{video.snippet.description}</td>
-                                        <button>
-                                            <img onClick={() => { props.setVideo(video) }}
-                                            scr={video.snippet.thumbnails.default.url}
+                                        <td>
+                                            <img onClick={() => { props.setVideo(video.id.videoId) }}
+                                            src={video.snippet.thumbnails.default.url}
                                             alt="A Thumbnail" />
-                                        </button>
+                                        </td>
                                     </tr>
                                     </React.Fragment>
                                 )
