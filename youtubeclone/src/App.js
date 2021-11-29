@@ -30,6 +30,9 @@ function App() {
     relatedVideo()
   }
 
+useEffect(()=> {
+  relatedVideo();
+})
 
   let url = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&origin=http://example.com`
 
@@ -49,8 +52,8 @@ function App() {
                 </div>
                 </column>
               <column>
-              <div className="columnB">
-                <DisplayRelatedResults setVideo={setVideo} videoRelatedResults={videoRelatedResults}/>
+                <div className="columnB">
+                <DisplayRelatedResults relatedVideo={relatedVideo} setVideo={setVideo} videoRelatedResults={videoRelatedResults}/>
                 </div>
               </column>
               </row>

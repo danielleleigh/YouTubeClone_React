@@ -5,7 +5,7 @@ const DisplayRelatedResults = (props) => {
         <React.Fragment>
             <table>
                 <thead>
-                    <td>Related Results</td>
+                    <td>Related Videos</td>
                 </thead>
                 <tbody>
                     <tr>
