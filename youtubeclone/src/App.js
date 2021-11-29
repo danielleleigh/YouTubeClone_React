@@ -4,9 +4,11 @@ import axios from 'axios'
 import DisplaySong from './components/videodisplay/videodisplay';
 import SearchBar from './components/videosearch/videosearch';
 
+
 function App() {
 
   const [music, setMusic] = useState([])
+  const [video, setVideo] = useState('gV_i61_U79U')
 
   const itunesAPICall = async () =>{
     let response = await axios.get("https://itunes.apple.com/search?term=radiohead&media=music&limit=20");
@@ -34,7 +36,13 @@ function App() {
     })
   }
 
-
+  const videoPlay = async () =>{
+    let response = await axios.get(`https://www.youtube.com/embed/${video}?autoplay=1&origin=http://example.com`);
+    console.log(response)
+    setVideo('gV_i61_U79U')
+    return response
+  }
+ 
 // export const KEY = '';
 // export default axios.create({
 //     baseURL: 'https://www.googleapis.com/youtube/v3',
@@ -82,14 +90,19 @@ function App() {
 
   <div>
     <h1>Meowy Christmas from Youtube</h1>
-    <SearchBar/>
-        <container>
+        <SearchBar/>
+         <container>
           <row>
             <column>
               <div className="columnA">
-              <iframe id="ytplayer" type="text/html" width="640" height="360"
+              {/* <iframe id="ytplayer" type="text/html" width="640" height="360"
+                    src="https://www.youtube.com/embed/gV_i61_U79U?autoplay=1&origin=http://example.com"
+                    frameborder="0"></iframe> */}
+                <button onClick={itunesAPICall}>Click me</button>
+                <iframe id="ytplayer" type="text/html" width="640" height="360"
                     src="https://www.youtube.com/embed/gV_i61_U79U?autoplay=1&origin=http://example.com"
                     frameborder="0"></iframe>
+                    
               </div>
               </column>
             <column>
