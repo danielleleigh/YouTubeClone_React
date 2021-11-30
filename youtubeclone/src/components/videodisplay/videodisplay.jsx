@@ -1,13 +1,36 @@
 import React from "react";
 
-function DisplayVideo (props){
-
+const DisplayVideo = (props) => {
     return (
-        <div>
-            <span>Video Title: {props.video.title}</span>
-            <span> Video Channel: {props.video.channelId}</span>
-
-        </div>
+        <React.Fragment>
+            <table>
+                <thead>
+                    <td>Search Results</td>
+                </thead>
+                <tbody>
+                    <tr>
+                        {
+                            props.currentVideoId.map((video) => {
+                                return(
+                                    <React.Fragment key={video.id.videoId}>
+                                    <tr>
+                                        <td>{video.snippet.title}</td>
+                                        <td>{video.snippet.description}</td>
+                                        <td>
+                                            <img onClick={() => { props.setVideo(video.id.videoId) }}
+                                            src={video.snippet.thumbnails.default.url}
+                                            alt="A Thumbnail" />
+                                        </td>
+                                    </tr>
+                                    </React.Fragment>
+                                )
+                            }
+                            )
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </React.Fragment>
     )
 }
 
