@@ -24,6 +24,11 @@ function App() {
     console.log(response.data.items)
   }
 
+  const getComment = async () => {
+    let response = await axios.get(`http://127.0.0.1:8000/comment/${currentVideoId}/`);
+    console.log(response)
+  }
+
   const setVideo = (videoId) => {
     setCurrentVideo(videoId)
     relatedVideo()
@@ -31,6 +36,7 @@ function App() {
 
 useEffect(()=> {
   relatedVideo();
+  getComment();
 },[])
 
   let url = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&origin=http://example.com`
@@ -56,7 +62,7 @@ useEffect(()=> {
               </column>
               </row>
           </container>
-          <Comment videoId={videoId}/>
+          {/* <Comment currentVideoId={currentVideoId}/> */}
     </div>
 
   );
