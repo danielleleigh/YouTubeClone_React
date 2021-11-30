@@ -12,7 +12,7 @@ function App() {
   const [videoSearchResults, setVideoSearchResults] = useState([])
   const [videoRelatedResults, setRelatedResults] = useState([])
   const [currentVideoId, setCurrentVideo] = useState(["gV_i61_U79U"])
-
+                                                                 
 
   const videoSearch = async (searchTerm) => {
     let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=AIzaSyC4nyDlyvfXhvQ3HURLJstUMoVybd3rAJM`);
@@ -54,7 +54,7 @@ useEffect(()=> {
                 <iframe title="youtube video" id="ytplayer" type="text/html" width="640" height="360"
                       src={url}
                       frameBorder="0"></iframe>
-          <DisplayVideo currentVideoId={currentVideoId} setVideo={setVideo}/>
+          {/* <DisplayVideo currentVideoId={currentVideoId} setVideo={setVideo}/> */}
           <DisplayComments videoId={currentVideoId}/>
                 </div>
                 </column>

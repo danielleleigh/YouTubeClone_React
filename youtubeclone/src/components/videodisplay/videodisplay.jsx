@@ -14,8 +14,8 @@ const DisplayVideo = (props) => {
                                 return(
                                     <React.Fragment key={video.id.videoId}>
                                     <tr>
-                                        <td>{video.snippet.title}</td>
-                                        <td>{video.snippet.description}</td>
+                                        {/* <td>{video.snippet.title}</td>
+                                        <td>{video.snippet.description}</td> */}
                                         <td>
                                             <img onClick={() => { props.setVideo(video.id.videoId) }}
                                             src={video.snippet.thumbnails.default.url}
@@ -24,8 +24,7 @@ const DisplayVideo = (props) => {
                                     </tr>
                                     </React.Fragment>
                                 )
-                            }
-                            )
+                            })
                         }
                     </tr>
                 </tbody>
