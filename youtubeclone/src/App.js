@@ -4,7 +4,8 @@ import axios from 'axios'
 import SearchBar from './components/videosearch/videosearch';
 import DisplaySearchResults from './components/DisplaySearchResults/DisplaySearchResutls';
 import DisplayRelatedResults from './components/DisplayRelatedResults/DisplayRelatedResults';
-
+import DisplayComments from './components/DisplayComments/DisplayComments';
+import DisplayVideo from './components/videodisplay/videodisplay';
 
 function App() {
 
@@ -12,22 +13,20 @@ function App() {
   const [videoRelatedResults, setRelatedResults] = useState([])
   const [currentVideoId, setCurrentVideo] = useState(["gV_i61_U79U"])
 
+
   const videoSearch = async (searchTerm) => {
-    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=AIzaSyD-QAy29NHPhPRDswlccdKHI83-iWmc8oc`);
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=AIzaSyC4nyDlyvfXhvQ3HURLJstUMoVybd3rAJM`);
     setVideoSearchResults(response.data.items)
     // console.log(response.data.items)
 }    
 
   const relatedVideo = async () => {
-    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${currentVideoId}&type=video&maxResults=5&key=AIzaSyD-QAy29NHPhPRDswlccdKHI83-iWmc8oc`);
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${currentVideoId}&type=video&maxResults=5&key=AIzaSyC4nyDlyvfXhvQ3HURLJstUMoVybd3rAJM`);
     setRelatedResults(response.data.items)
     console.log(response.data.items)
   }
 
-  const getComment = async () => {
-    let response = await axios.get(`http://127.0.0.1:8000/comment/${currentVideoId}/`);
-    console.log(response)
-  }
+  
 
   const setVideo = (videoId) => {
     setCurrentVideo(videoId)
@@ -36,13 +35,15 @@ function App() {
 
 useEffect(()=> {
   relatedVideo();
-  getComment();
 },[])
 
   let url = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&origin=http://example.com`
 
   return (
     <div>
+      <div>
+        <img id="logo" src='/Users/sonyabrazell/Desktop/devcodecamp/youtube_clone/YouTubeClone_React/youtubeclone/src/static/youtube-logo-11609383902z56yosfap9.png' alt="logo"></img>
+      </div>
       <h1>Meowy Christmas from Youtube</h1>
       <SearchBar videoSearch={videoSearch} />
       <DisplaySearchResults setVideo={setVideo} videoSearchResults={videoSearchResults}/>
@@ -53,6 +54,8 @@ useEffect(()=> {
                 <iframe title="youtube video" id="ytplayer" type="text/html" width="640" height="360"
                       src={url}
                       frameBorder="0"></iframe>
+          <DisplayVideo currentVideoId={currentVideoId} setVideo={setVideo}/>
+          <DisplayComments videoId={currentVideoId}/>
                 </div>
                 </column>
               <column>
@@ -63,6 +66,8 @@ useEffect(()=> {
               </row>
           </container>
           {/* <Comment currentVideoId={currentVideoId}/> */}
+          <div>
+          </div>
     </div>
 
   );

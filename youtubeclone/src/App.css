@@ -12,6 +12,13 @@
   margin-right: .5rem;
 } */
 
+.logo img {
+  float: left;
+  left: 50%;
+  max-width: 200px;
+  height: auto;
+}
+
 .columnA {
   float: left;
   width: 80%;
