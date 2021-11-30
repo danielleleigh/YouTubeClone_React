@@ -13,13 +13,13 @@ function App() {
   const [currentVideoId, setCurrentVideo] = useState(["gV_i61_U79U"])
 
   const videoSearch = async (searchTerm) => {
-    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=AIzaSyCTsMnnqzkaOvW4zYnh6rCJAUH2hXP0DbA`);
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&type=video&maxResults=5&key=AIzaSyA5gZtth1-RzIPiLjLsk5T0Y4r-Unu6a2A`);
     setVideoSearchResults(response.data.items)
     // console.log(response.data.items)
 }    
 
   const relatedVideo = async () => {
-    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${currentVideoId}&type=video&maxResults=5&key=AIzaSyCTsMnnqzkaOvW4zYnh6rCJAUH2hXP0DbA`);
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${currentVideoId}&type=video&maxResults=5&key=AIzaSyA5gZtth1-RzIPiLjLsk5T0Y4r-Unu6a2A`);
     setRelatedResults(response.data.items)
     console.log(response.data.items)
   }
@@ -30,7 +30,7 @@ function App() {
   }
 
 useEffect(()=> {
-  relatedVideo();
+  
 })
 
   let url = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&origin=http://example.com`
