@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 
-function Comment = (props) => {
+const Comment = (props) => {
     const [comment,setComment] = useState('');
     const [video, setVideo] = useState(props.currentVideoId);
 

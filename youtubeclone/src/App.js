@@ -6,6 +6,7 @@ import DisplaySearchResults from './components/DisplaySearchResults/DisplaySearc
 import DisplayRelatedResults from './components/DisplayRelatedResults/DisplayRelatedResults';
 import DisplayComments from './components/DisplayComments/DisplayComments';
 import DisplayVideo from './components/videodisplay/videodisplay';
+import Comment from './components/Comment/Comment';
 
 function App() {
 
@@ -37,7 +38,7 @@ useEffect(()=> {
   relatedVideo();
 },[])
 
-  let url = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&origin=http://example.com`
+  // let url = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&origin=http://example.com`
 
   return (
     <div>
@@ -52,10 +53,10 @@ useEffect(()=> {
               <column>
                 <div className="columnA">
                 <iframe title="youtube video" id="ytplayer" type="text/html" width="640" height="360"
-                      src={url}
-                      frameBorder="0"></iframe>
-          {/* <DisplayVideo currentVideoId={currentVideoId} setVideo={setVideo}/> */}
+                      src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&origin=http://example.com`}
+                      frameBorder="0"></iframe>          
           <DisplayComments videoId={currentVideoId}/>
+          <Comment currentVideoId={currentVideoId}/>
                 </div>
                 </column>
               <column>
@@ -65,7 +66,6 @@ useEffect(()=> {
               </column>
               </row>
           </container>
-          {/* <Comment currentVideoId={currentVideoId}/> */}
           <div>
           </div>
     </div>
